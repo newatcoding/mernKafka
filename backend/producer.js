@@ -16,7 +16,8 @@ const run = async () => {
     messages: [
       { value: 'Hello KafkaJS user!' },
     ],
-  })
+  });
+  
 }
   producer.disconnect();
   // Consuming
