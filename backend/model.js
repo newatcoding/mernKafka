@@ -2,7 +2,7 @@ let mongoose=require('mongoose');
 let db = require('./database');
 // create an schema
 let userSchema = new mongoose.Schema({
-            id:String,
+            id:Number,
             name: String,
             age:String,
             

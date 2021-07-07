@@ -12,15 +12,15 @@ const UsersList = (props) => {
   //  }   
    
   // },[props.users]);
-
+ console.log(props.user);
  console.log(props.users.length);
   return (
     <Card className={classes.users}>
       <ul className="users ul" >
         {props.users.map((user,idx) => (     
             <li key={user.id} className="users li">
-              <p>{user.name} ({user.age} years old)</p>
-              <button className={classes.button} onClick={props.delete.bind(null,user._id)}>Delete</button>
+              <p>{user.name} ({user.age} years old) </p>
+              {/* <button className={classes.button} onClick={props.delete.bind(null,user.id)}>Delete</button> */}
             </li>
     
         ))}

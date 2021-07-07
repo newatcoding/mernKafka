@@ -39,12 +39,12 @@ router.get('/getUsers',(req,res,next) => {
     })
 });
 
-router.post('/postUsers', urlencodedParser, function (req, res) {
+router.post('/postUsers', urlencodedParser, async function (req, res) {
     //  console.log(req.body);
-    const data=req.body;
-    const newUser=new model(data);
+    const data=await req.body;
+    const newUser=await new model(data);
     
-    newUser.save((err)=>{
+    await newUser.save((err)=>{
         if(err){
             res.status(500).json({msg:'Sorry, internal Server errors'});
         }else{
@@ -58,8 +58,10 @@ router.post('/postUsers', urlencodedParser, function (req, res) {
 });
 
 router.delete('/deleteUser/:id',(req,res,next) =>{
-    model.findByIdAndRemove({_id:req.params.id}).then((deletedUser)=>{
-        console.log(deletedUser)
+    console.log(req.params.id.toString())
+    
+    model.findByIdAndRemove({id:`${req.params.id}`}).then((deletedUser)=>{
+        console.log(deletedUser);
         res.send(deletedUser);
     }).catch((err)=>{
         res.json(err);

@@ -1,0 +1,17 @@
+{
+  "name": "kafka-installation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:producer": "node ./producer/index.js",
+    "start:consumer": "node ./consumer/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "avsc": "^5.7.1",
+    "node-rdkafka": "^2.10.1"
+  }
+}

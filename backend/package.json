@@ -16,6 +16,6 @@
     "kafkajs": "^1.15.0",
     "mongodb": "^3.6.8",
     "mongoose": "^5.13.0",
-    "nodemon": "^2.0.8"
+    "nodemon": "^2.0.9"
   }
 }
