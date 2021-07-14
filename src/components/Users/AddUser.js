@@ -51,17 +51,17 @@ const AddUser = (props) => {
     ageInputRef.current.value='';
     toast("Adding Initiated",{autoClose:2000});
     
-      for(let i=0;i<1000;i++){ 
-          //  queue.enqueue(async function abc(){
-              addNotificationHandler(notification);
+        for(let i=0;i<1000;i++){ 
+            // queue.enqueue(async function abc(){
+              // addNotificationHandler(notification);
               props.onAddUser(enteredName, enteredUserAge);
-          // });
+          //  });
           // abc();
-      }
+        }
 
-    while(queue.shouldRun){
-       await queue.dequeue();
-    }
+    // while(queue.shouldRun){
+    //    await queue.dequeue();
+    // }
     
     
     // setEnteredUsername('');

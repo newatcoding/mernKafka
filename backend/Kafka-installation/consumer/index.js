@@ -11,7 +11,7 @@ consumer.connect();
 
 consumer.on('ready', function() {
     console.log('consumer started');
-    consumer.subscribe(['test-1']);
+    consumer.subscribe(['test-topics']);
     consumer.consume();
 })
 .on('data', function(data) {

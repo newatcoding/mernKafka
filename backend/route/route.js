@@ -6,6 +6,8 @@ const mongoose=require('mongoose');
 const DB='mongodb+srv://newatcoding:newatcoding@cluster0.ilmvp.mongodb.net/PaymentnNotification?retryWrites=true&w=majority';
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var addUser=require('../Kafka-installation/producer/index');
+
 
 mongoose.Promise=global.Promise;
 mongoose.connect(DB,
@@ -40,17 +42,24 @@ router.get('/getUsers',(req,res,next) => {
 });
 
 router.post('/postUsers', urlencodedParser, async function (req, res) {
-    //  console.log(req.body);
+    //console.log(req.body);
     const data=await req.body;
     const newUser=await new model(data);
+   
+   
+    addUser(data);
     
-    await newUser.save((err)=>{
-        if(err){
-            res.status(500).json({msg:'Sorry, internal Server errors'});
-        }else{
-            res.json({msg:'your data has been saved'})
-        }
-    });
+
+    // await newUser.save((err)=>{
+    //     if(err){
+    //         res.status(500).json({msg:'Sorry, internal Server errors'});
+    //     }else{
+    //         res.json({msg:'your data has been saved'})
+    //     }
+    // });
+
+    res.json({msg:'your data has been saved'})
+
     // res.send(post);
     // let newUser=new Pos
     // console.log(res);

@@ -108,7 +108,8 @@ function App() {
           pauseOnHover
       />
       <AddUser onAddUser={addUserHandler} />
-      {usersList.length!==0 && <DeleteAll setEmpty={setUsersList} length={usersList.length}/>}
+      {/* {usersList.length!==0 && <DeleteAll setEmpty={setUsersList} length={usersList.length}/>} */}
+      <DeleteAll setEmpty={setUsersList} length={usersList.length}/>
       <UsersList users={usersList} delete={deleteUserHandler} />
     </div>
   );
