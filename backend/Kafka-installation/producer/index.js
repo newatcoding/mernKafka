@@ -31,41 +31,37 @@ var producer = new Kafka.Producer({
   });
  
   producer.connect();
-  function addUser(data){
-    // console.log(data);
-      
-      producer.on('ready', function() {
-        console.log('data');
-        try {
-            // for(let i=0;i<1;i++){
-                producer.produce(
-                    'test-topics',
-                    null,
-                    // Buffer.from(JSON.stringify({"name":`${i}`,"age":`${i}`,id:Math.random()}) ),
-                    Buffer.from(JSON.stringify(data)),
-                  
-                  );
-                  // producer.produce(
-                  //   'notify-topics',
-                  //   null,
-                  //   Buffer.from(JSON.stringify({"name":`${i}`,"age":`${i}`,id:Math.random()}) ),
-                  //   Date.now(),
-                  // );
-            // }
-        
-        } catch (err) {
-          console.error('A problem occurred when sending our message');
-          console.error(err);
-        }
-      });
-      
-      producer.on('event.error', function(err) {
-        console.error('Error from producer');
-        console.error(err);
-      })
-  }
   
+  producer.on('ready', function() {
+    try {
+        // for(let i=0;i<1;i++){
+            // producer.produce(
+            //     'test-topics',
+            //     null,
+            //     Buffer.from(JSON.stringify({"name":`${i}`,"age":`${i}`,id:Math.random()}) ),
+            //     'Stormwind',
+            //     Date.now(),
+               
+            //   );
+            //   producer.produce(
+            //     'notify-topics',
+            //     null,
+            //     Buffer.from(JSON.stringify({"name":`${i}`,"age":`${i}`,id:Math.random()}) ),
+            //     Date.now(),
+            //   );
+        // }
+     
+    } catch (err) {
+      console.error('A problem occurred when sending our message');
+      console.error(err);
+    }
+  });
+  
+  producer.on('event.error', function(err) {
+    console.error('Error from producer');
+    console.error(err);
+  })
   
   // producer.setPollInterval(100);
 
-  module.exports=addUser;
+  module.exports=producer;

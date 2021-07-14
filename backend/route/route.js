@@ -6,8 +6,10 @@ const mongoose=require('mongoose');
 const DB='mongodb+srv://newatcoding:newatcoding@cluster0.ilmvp.mongodb.net/PaymentnNotification?retryWrites=true&w=majority';
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
-var addUser=require('../Kafka-installation/producer/index');
 
+
+var producer = require('../Kafka-installation/producer/index');
+// producer.connect();
 
 mongoose.Promise=global.Promise;
 mongoose.connect(DB,
@@ -42,12 +44,26 @@ router.get('/getUsers',(req,res,next) => {
 });
 
 router.post('/postUsers', urlencodedParser, async function (req, res) {
-    //console.log(req.body);
+    //  console.log(req.body);
     const data=await req.body;
     const newUser=await new model(data);
    
+  
+     for(let i=0;i<10;i++){
+        producer.produce(
+            'test-topics',
+            null,
+            // Buffer.from(JSON.stringify({"name":`${i}`,"age":`${i}`,id:Math.random()}) ),
+            Buffer.from(JSON.stringify(newUser) ),
+            'Stormwind',
+            Date.now(),
+            
+            );
+     }
+         
+     
    
-    addUser(data);
+    
     
 
     // await newUser.save((err)=>{
